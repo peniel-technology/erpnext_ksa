@@ -46,6 +46,10 @@ def make_custom_fields():
 		fieldtype='Check', fetch_from='item_code.is_exempt', insert_after='is_zero_rated',
 		print_hide=1)
 
+	tax_rate = dict(fieldname='ksa_tax_rate', label='Tax Rate', fieldtype='Float', insert_after='item_tax_template', read_only=1)
+	tax_amount = dict(fieldname='ksa_tax_amount', label='Tax Amount', fieldtype='Float', insert_after='ksa_tax_rate', read_only=1)
+	total_amount = dict(fieldname='ksa_total_amount', label='Total Amount', fieldtype='Float', insert_after='ksa_tax_amount', read_only=1)
+
 	purchase_invoice_fields = [
 			dict(fieldname='company_trn', label='Company TRN',
 				fieldtype='Read Only', insert_after='shipping_address',
@@ -83,15 +87,15 @@ def make_custom_fields():
 		'POS Invoice': sales_invoice_fields,
 		'Sales Order': sales_invoice_fields,
 		'Delivery Note': sales_invoice_fields,
-		'Sales Invoice Item': [is_zero_rated, is_exempt],
-		'POS Invoice Item': [is_zero_rated, is_exempt],
-		'Purchase Invoice Item': [is_zero_rated, is_exempt],
-		'Sales Order Item': [is_zero_rated, is_exempt],
-		'Delivery Note Item': [is_zero_rated, is_exempt],
-		'Quotation Item': [is_zero_rated, is_exempt],
-		'Purchase Order Item': [is_zero_rated, is_exempt],
-		'Purchase Receipt Item': [is_zero_rated, is_exempt],
-		'Supplier Quotation Item': [is_zero_rated, is_exempt],
+		'Sales Invoice Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'POS Invoice Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Purchase Invoice Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Sales Order Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Delivery Note Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Quotation Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Purchase Order Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Purchase Receipt Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
+		'Supplier Quotation Item': [is_zero_rated, is_exempt, tax_rate, tax_amount, total_amount],
 		'Address': [
 			dict(fieldname='address_in_arabic', label='Address in Arabic',
 				fieldtype='Data',insert_after='address_line2')

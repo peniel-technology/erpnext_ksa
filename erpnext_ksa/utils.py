@@ -175,3 +175,7 @@ def update_itemised_tax_data(doc):
 		row.tax_rate = flt(tax_rate, precision)
 		row.tax_amount = flt((row.net_amount * tax_rate) / 100, precision)
 		row.total_amount = flt((row.net_amount + row.tax_amount), precision)
+
+		row.ksa_tax_rate = row.tax_rate
+		row.ksa_tax_amount = row.tax_amount
+		row.ksa_total_amount = row.total_amount
